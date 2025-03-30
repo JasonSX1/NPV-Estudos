@@ -13,6 +13,6 @@ export class UnityService {
         search: string
     ) {
         const {results, totalItems} = await this.repository.paginate(page, size, sort, order, search);
-        const totalPages = Math.ceil
+        const totalPages = Math.ceil (totalItems / size) -1;
      }
 }
