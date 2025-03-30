@@ -24,7 +24,7 @@ model Unity {
 model Product {
   id BigInt @id @default(autoincrement())
   name String @unique
-  priceSale Float  
+  priceSale Decimal @db.Money 
   unity Unity @relation(fields: [unityId], references: [id])
   unityId BigInt @map(name: "unity_id")
 
