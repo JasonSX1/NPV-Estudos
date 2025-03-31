@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { CreateUnityDto } from "../dto/create-unity.dto";
 import { UpdateUnityDto } from "../dto/update-unity.dto";
@@ -24,7 +24,20 @@ export class UnityRepository {
             where: { name: { contains: search, mode: 'insensitive' } },
         });
         return { results, totalItems };
-    };
+    }
+
+    async findById(id: bigint) {
+        const unity = await this.prisma.unity.findFirst({
+            where: { id },
+        });
+    
+        if (!unity) {
+            throw new NotFoundException('Esse registro não existe');
+        }
+    
+        return unity;
+    }
+    
 
     async create(createUnityDTO: CreateUnityDto) {
        return await this.prisma.unity.create({data: createUnityDTO})
@@ -42,5 +55,7 @@ export class UnityRepository {
             where: { id },
         })
     }
+
+
 
 }

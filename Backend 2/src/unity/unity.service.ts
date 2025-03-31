@@ -36,6 +36,10 @@ export class UnityService {
         }
     }
 
+    async findById(id:bigint) {
+        return await this.repository.findById(id);
+    }
+
     async create(createUnityDTO: CreateUnityDto) {
         return await this.repository.create(createUnityDTO);
     }
