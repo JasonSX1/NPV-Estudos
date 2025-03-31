@@ -27,17 +27,10 @@ export class UnityRepository {
     }
 
     async findById(id: bigint) {
-        const unity = await this.prisma.unity.findFirst({
+        return await this.prisma.unity.findFirstOrThrow({
             where: { id },
         });
-    
-        if (!unity) {
-            throw new NotFoundException('Esse registro não existe');
-        }
-    
-        return unity;
     }
-    
 
     async create(createUnityDTO: CreateUnityDto) {
        return await this.prisma.unity.create({data: createUnityDTO})
