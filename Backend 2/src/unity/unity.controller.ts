@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post, Request } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Request } from '@nestjs/common';
 import { UnityService } from './unity.service';
 import { CreateUnityDto } from './dto/create-unity.dto';
 import { UpdateUnityDto } from './dto/update-unity.dto';
@@ -27,5 +27,10 @@ export class UnityController {
     @Patch(':id')
     async update(@Param('id') id:string , @Body() updateUnityDto:UpdateUnityDto) {
         return await this.unityService.update(BigInt(id), updateUnityDto); 
+    }
+
+    @Delete(':id')
+    async delete(@Param('id') id:string) {
+        return await this.unityService.remove(BigInt(id)); 
     }
 }

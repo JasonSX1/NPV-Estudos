@@ -42,6 +42,9 @@ export class UnityService {
 
     async update(id:bigint, updateUnityDTO: UpdateUnityDto){
         return await this.repository.update(updateUnityDTO.id, updateUnityDTO);
+    }
 
+    async remove(id:bigint) {
+        return await this.repository.remove(id);
     }
 }

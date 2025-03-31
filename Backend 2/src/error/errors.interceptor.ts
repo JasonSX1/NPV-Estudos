@@ -26,15 +26,11 @@ export class ErrorsInterceptor implements NestInterceptor {
                 throw new ConflictException(
                   "Um registro com esse nome já existe"
                 );
-              break;
-
-              case 'P2025':
-                if (err.message.includes('Unity')) {
-                  throw new NotFoundException(
-                    'Esse registro não existe'
-                  );
-                }
-                break;
+                
+            case 'P2025':
+              throw new NotFoundException(
+                'Esse registro não existe'
+              );
 
             default:
               throw new BadGatewayException();
