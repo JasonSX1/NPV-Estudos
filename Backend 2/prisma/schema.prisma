@@ -25,8 +25,8 @@ model Product {
   id        BigInt  @id @default(autoincrement())
   name      String  @unique
   priceSale Decimal @db.Money
-  unity     Unity   @relation(fields: [unityId], references: [id])
   unityId   BigInt  @map("unity_id")
+  unity     Unity   @relation(fields: [unityId], references: [id])
 
   @@map("product")
 }
